@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://kxamafaw8ah5"]
 
 [ext_resource type="Script" uid="uid://ck32ej8unxqtw" path="res://Entities/Player/Player.cs" id="1_e5kic"]
+[ext_resource type="PackedScene" uid="uid://dams1c0c4rfnl" path="res://Entities/Bobber/Bobber.tscn" id="2_ww0jn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5kic"]
 
@@ -15,10 +16,21 @@ material = SubResource("StandardMaterial3D_e5kic")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5kic"]
 
-[node name="Player" type="CharacterBody3D" unique_id=646492556 node_paths=PackedStringArray("body")]
+[sub_resource type="Curve3D" id="Curve3D_ww0jn"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, -2.005, 0, 0, 0, 0, 0, 0, 0, 0, -3.005),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Player" type="CharacterBody3D" unique_id=646492556 node_paths=PackedStringArray("body", "path", "pathFollow", "marker")]
 script = ExtResource("1_e5kic")
 rotationSpeed = 5.0
 body = NodePath("MeshInstance3D")
+bobberScene = ExtResource("2_ww0jn")
+path = NodePath("Path3D")
+pathFollow = NodePath("Path3D/PathFollow3D")
+marker = NodePath("MeshInstance3D/Marker3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1211070290]
 mesh = SubResource("CapsuleMesh_u36tg")
@@ -27,8 +39,18 @@ mesh = SubResource("CapsuleMesh_u36tg")
 transform = Transform3D(-1.8002108e-08, 0, 0.78285855, 0, 0.38654932, 0, -0.41184023, 0, -3.4219834e-08, 0, 0.4, -0.4)
 mesh = SubResource("BoxMesh_ww0jn")
 
+[node name="Marker3D" type="Marker3D" parent="MeshInstance3D" unique_id=278575115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0421529)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1021923019]
 shape = SubResource("CapsuleShape3D_e5kic")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=735715387]
 transform = Transform3D(1, 0, 0, 0, 0.42261824, 0.9063078, 0, -0.9063078, 0.42261824, 0, 7.5, 3)
+
+[node name="Path3D" type="Path3D" parent="." unique_id=2093555557]
+curve = SubResource("Curve3D_ww0jn")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=172476339]
+transform = Transform3D(-0.99999845, 8.742252e-08, 0, -6.574332e-08, -0.7520149, -0.6591422, -5.7624078e-08, -0.6591417, 0.7520154, 0, 0.7299904, -0.30323935)
+progress = 1.0673676

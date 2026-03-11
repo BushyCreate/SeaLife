@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dams1c0c4rfnl"]
+
+[ext_resource type="PackedScene" uid="uid://dyys5umeh8pja" path="res://Entities/Bobber/fishing_bobber.glb" id="1_1dgnr"]
+[ext_resource type="Script" uid="uid://dnhv60vntb21j" path="res://Entities/Bobber/Bobber.cs" id="1_5fr00"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5fr00"]
+radius = 0.1
+
+[node name="Bobber" type="CharacterBody3D" unique_id=389673203]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_5fr00")
+
+[node name="fishing_bobber" parent="." unique_id=38090528 instance=ExtResource("1_1dgnr")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=264898915]
+shape = SubResource("SphereShape3D_5fr00")

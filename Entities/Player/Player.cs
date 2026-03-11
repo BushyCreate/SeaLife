@@ -19,12 +19,6 @@ public partial class Player : CharacterBody3D
 
 	Vector3 lastdirection = Vector3.Forward;
 
-	Tween tween;
-
-	public override void _Ready()
-	{
-	}
-
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -56,6 +50,11 @@ public partial class Player : CharacterBody3D
 		body.Rotation = bodyrot;
 		Velocity = velocity;
 		MoveAndSlide();
+
+		if (bobberOut)
+		{
+			HandleRod();
+		}
 	}
 
 	public override void _Input(InputEvent @event)
@@ -99,6 +98,21 @@ public partial class Player : CharacterBody3D
 		path.Curve.SetPointPosition(1, new Vector3(middle.X, middle.Y += 2, middle.Z));
 		path.Curve.SetPointPosition(2, GetMouseWorldPosition(GetViewport().GetMousePosition()));
 		GD.Print(path.Curve.GetBakedPoints()[2]);
+	}
+
+	private void HandleRod()
+	{
+		if (bobber.caught)
+		{
+			bobberOut = false;
+			OnFishCaught();
+		}
+	}
+	private void OnFishCaught()
+	{
+		GD.Print("Caught a fish!");
+		bobber.QueueFree();
+		bobberOut = false;
 	}
 
 }

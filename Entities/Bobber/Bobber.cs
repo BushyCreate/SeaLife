@@ -3,7 +3,7 @@ using System;
 
 public partial class Bobber : CharacterBody3D
 {
-
+    public bool caught = false;
     public override void _PhysicsProcess(double delta)
     {
 
@@ -23,5 +23,4 @@ public partial class Bobber : CharacterBody3D
         }
         MoveAndSlide();
     }
-
 }

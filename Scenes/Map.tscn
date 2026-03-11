@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="1_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="1_s486e"]
+[ext_resource type="PackedScene" uid="uid://wsxi47iwuu0a" path="res://Entities/FishingSpot/FishingSpot.tscn" id="3_etk83"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7yn8b"]
 
@@ -56,3 +57,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000868, 1.0399389, 0.5353
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=681438347]
 environment = SubResource("Environment_etk83")
+
+[node name="FishingSpot" parent="." unique_id=1163615886 instance=ExtResource("3_etk83")]
+transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3.5, -11.132787, -1.7393286, -1.7147105)

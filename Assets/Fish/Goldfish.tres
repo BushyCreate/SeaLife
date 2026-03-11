@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishBase" format=3 uid="uid://dvu0vlmyl85b7"]
+
+[ext_resource type="Script" uid="uid://djr5rxbw0ntn2" path="res://Assets/Fish/FishBase.cs" id="1_wnshx"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_wnshx"]
+
+[resource]
+script = ExtResource("1_wnshx")
+Name = "Goldfish"
+Description = "Don't let it's color fool you! It's not worth as much as gold... // Found in the freshwater."
+Icon = SubResource("ImageTexture_wnshx")
+metadata/_custom_type_script = "uid://djr5rxbw0ntn2"

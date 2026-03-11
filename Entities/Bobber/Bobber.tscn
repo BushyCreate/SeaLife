@@ -7,8 +7,8 @@
 radius = 0.1
 
 [node name="Bobber" type="CharacterBody3D" unique_id=389673203]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_5fr00")
 
 [node name="fishing_bobber" parent="." unique_id=38090528 instance=ExtResource("1_1dgnr")]

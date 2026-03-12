@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qa1l7khr5cpp"]
+
+[ext_resource type="Script" uid="uid://vkigljra0g0d" path="res://Entities/SellSpot/SellSpot.cs" id="1_wlkvj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_oq7w5"]
+height = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qbpks"]
+height = 0.1
+
+[node name="SellSpot" type="Node3D" unique_id=1163615886]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_wlkvj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=524726031]
+mesh = SubResource("CylinderMesh_oq7w5")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=378397045]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D" unique_id=1096912517]
+shape = SubResource("CylinderShape3D_qbpks")
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="OnBodyEnter"]

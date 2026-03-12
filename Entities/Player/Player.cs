@@ -10,9 +10,8 @@ public partial class Player : CharacterBody3D
 	[Export] public float rotationSpeed = 2;
 	[Export] public MeshInstance3D body;
 	[Export] public PackedScene bobberScene;
-	[Export] public Path3D path;
-	[Export] public PathFollow3D pathFollow;
 	[Export] public Marker3D marker;
+	[Export] public HUDManager HUDManager;
 
 	private bool bobberOut;
 	private Bobber bobber;
@@ -91,15 +90,6 @@ public partial class Player : CharacterBody3D
 		return pos;
 	}
 
-
-	private void SetPath()
-	{
-		var middle = (GlobalPosition + GetMouseWorldPosition(GetViewport().GetMousePosition())) / 2;
-		path.Curve.SetPointPosition(1, new Vector3(middle.X, middle.Y += 2, middle.Z));
-		path.Curve.SetPointPosition(2, GetMouseWorldPosition(GetViewport().GetMousePosition()));
-		GD.Print(path.Curve.GetBakedPoints()[2]);
-	}
-
 	private void HandleRod()
 	{
 		if (bobber.caught)
@@ -112,6 +102,7 @@ public partial class Player : CharacterBody3D
 	{
 		GD.Print("Caught a fish!");
 		bobber.QueueFree();
+		HUDManager.AddFish();
 		bobberOut = false;
 	}
 

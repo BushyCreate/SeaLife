@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bpl8tddf2aaxj"]
+
+[ext_resource type="Script" uid="uid://b518pix3a43jq" path="res://Assets/HUD/HUDManager.cs" id="1_tptic"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0axmq"]
+bg_color = Color(0.90062386, 0.92110485, 7.70092e-07, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_tptic"]
+font_size = 46
+outline_size = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_5dif2"]
+font_size = 32
+
+[node name="Default" type="Control" unique_id=1091279904 node_paths=PackedStringArray("MoneyCount", "FishCount")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tptic")
+MoneyCount = NodePath("HBoxContainer/ColorRect/Label")
+FishCount = NodePath("HBoxContainer/ColorRect2/Label")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1608159035]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.38200003
+anchor_bottom = 0.10300001
+offset_right = -0.06402588
+offset_bottom = 0.2559967
+
+[node name="ColorRect" type="Panel" parent="HBoxContainer" unique_id=102174188]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0axmq")
+
+[node name="Label" type="Label" parent="HBoxContainer/ColorRect" unique_id=478860874]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.06800079
+grow_horizontal = 2
+grow_vertical = 2
+text = "0  "
+label_settings = SubResource("LabelSettings_tptic")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/ColorRect" unique_id=1363142982]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083000004
+anchor_right = 0.335
+anchor_bottom = 1.0
+offset_left = -3.0940018
+offset_right = -0.02999878
+text = "🪙"
+label_settings = SubResource("LabelSettings_5dif2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="Panel" parent="HBoxContainer" unique_id=1036782810]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0axmq")
+
+[node name="Label" type="Label" parent="HBoxContainer/ColorRect2" unique_id=1181263754]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.06800079
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/10  "
+label_settings = SubResource("LabelSettings_tptic")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/ColorRect2" unique_id=1404114115]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083000004
+anchor_right = 0.349
+anchor_bottom = 1.0
+offset_left = -0.09400177
+offset_right = -0.08200073
+text = "🐟"
+label_settings = SubResource("LabelSettings_5dif2")
+horizontal_alignment = 1
+vertical_alignment = 1

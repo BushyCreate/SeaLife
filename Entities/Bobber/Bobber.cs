@@ -11,9 +11,9 @@ public partial class Bobber : CharacterBody3D
         {
             var forward_dir = -GlobalTransform.Basis.Z;
             Vector3 vel = new Vector3();
-            vel.X = Mathf.Clamp(forward_dir.X * 0.5f, -5, 5);
-            vel.Z = Mathf.Clamp(forward_dir.Z * 0.5f, -5, 5);
-            Velocity += new Vector3(vel.X, GetGravity().Y * (float)delta, vel.Z);
+            vel.X = Mathf.Clamp(forward_dir.X * 0.5f, -1, 1);
+            vel.Z = Mathf.Clamp(forward_dir.Z * 0.5f, -1, 1);
+            Velocity += new Vector3(vel.X, GetGravity().Y * (float)delta * 2, vel.Z);
             GD.Print(vel);
         }
 

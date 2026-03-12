@@ -3,6 +3,8 @@
 [ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="1_7yn8b"]
 [ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="1_s486e"]
 [ext_resource type="PackedScene" uid="uid://wsxi47iwuu0a" path="res://Entities/FishingSpot/FishingSpot.tscn" id="3_etk83"]
+[ext_resource type="PackedScene" uid="uid://bpl8tddf2aaxj" path="res://Assets/HUD/Default.tscn" id="4_qumfl"]
+[ext_resource type="PackedScene" uid="uid://qa1l7khr5cpp" path="res://Entities/SellSpot/SellSpot.tscn" id="5_r08cw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7yn8b"]
 
@@ -52,11 +54,19 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=1692769041]
 shape = SubResource("BoxShape3D_etk83")
 
-[node name="Player" parent="." unique_id=646492556 instance=ExtResource("1_s486e")]
+[node name="Player" parent="." unique_id=646492556 node_paths=PackedStringArray("HUDManager") instance=ExtResource("1_s486e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000868, 1.0399389, 0.535336)
+HUDManager = NodePath("../CanvasLayer/Default")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=681438347]
 environment = SubResource("Environment_etk83")
 
 [node name="FishingSpot" parent="." unique_id=1163615886 instance=ExtResource("3_etk83")]
 transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3.5, -11.132787, -1.7393286, -1.7147105)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1562780178]
+
+[node name="Default" parent="CanvasLayer" unique_id=1091279904 instance=ExtResource("4_qumfl")]
+
+[node name="SellSpot" parent="." unique_id=1964699868 instance=ExtResource("5_r08cw")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 3.497407, 0.08993845, -1.3088468)

@@ -1,13 +1,20 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class FishingSpot : Node3D
 {
 	[Export] int MaxStock = 3;
 	public int CurrentStock;
 	[Export] Timer timer;
+	[Export] Timer catchTime;
+	[Export] Timer fishTime;
+	private bool fishFound;
 	[Export] MeshInstance3D mesh;
-	// Called when the node enters the scene tree for the first time.
+
+	[Export] FishBase[] CatchableFish;
+
+	private Bobber bob;
 
 	public FishingSpot()
 	{
@@ -29,10 +36,49 @@ public partial class FishingSpot : Node3D
 	{
 		if (body is Bobber)
 		{
-			Bobber bob = body as Bobber;
-			bob.caught = true;
-			CurrentStock--;
+			bob = body as Bobber;
+			Random rnd = new Random();
+			catchTime.WaitTime = rnd.Next(3, 7);
+			catchTime.Start();
 		}
+	}
 
+	public void FishFound()
+	{
+		Player player = GetTree().GetNodesInGroup("Player")[0] as Player;
+		player.caughtSprite.Visible = true;
+		fishTime.Start();
+		fishFound = true;
+
+	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("RMB") && fishFound == true)
+		{
+			OnCaught();
+		}
+	}
+
+	public void FishFled()
+	{
+		fishFound = false;
+		Player player = GetTree().GetNodesInGroup("Player")[0] as Player;
+		player.caughtSprite.Visible = false;
+	}
+
+
+	public void OnCaught()
+	{
+		bob.caught = true;
+		Random rnd = new Random();
+		bob.fish = CatchableFish[rnd.Next(0, CatchableFish.Length - 1)];
+		fishFound = false;
+		Player player = GetTree().GetNodesInGroup("Player")[0] as Player;
+		player.caughtSprite.Visible = false;
+		CurrentStock--;
+		if (CurrentStock == 0)
+		{
+			Restock();
+		}
 	}
 }

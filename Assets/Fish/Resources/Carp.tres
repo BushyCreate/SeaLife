@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FishBase" format=3 uid="uid://hrkmp0jkj8xc"]
+
+[ext_resource type="Script" uid="uid://djr5rxbw0ntn2" path="res://Assets/Fish/FishBase.cs" id="1_gqbv4"]
+[ext_resource type="Texture2D" uid="uid://ggi8qjpqjnht" path="res://Assets/Fish/Textures/carp.png" id="1_w1ioc"]
+
+[resource]
+script = ExtResource("1_gqbv4")
+Name = "Carp"
+Description = "Dude if you remove the p it spells Car haha i didnt know what to put here // Found in the lake."
+Icon = ExtResource("1_w1ioc")
+Rarity = 1
+metadata/_custom_type_script = "uid://djr5rxbw0ntn2"

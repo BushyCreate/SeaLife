@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://c61ehttmrhtsb"]
+
+[ext_resource type="Texture2D" uid="uid://cqxnfof6pl4np" path="res://Assets/Fish/Textures/bass.png" id="1_3aeh4"]
+
+[sub_resource type="Animation" id="Animation_24rjm"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.7853982, 2.356194490192345]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.4690754]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(611, 121)]
+}
+
+[sub_resource type="Animation" id="Animation_3aeh4"]
+resource_name = "Start"
+length = 1.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.7853981633974483, 3.9269908169872414]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.5707963267948966, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(611, 121), Vector2(611, 115), Vector2(611, 121)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3al3a"]
+_data = {
+&"RESET": SubResource("Animation_24rjm"),
+&"Start": SubResource("Animation_3aeh4")
+}
+
+[node name="CaughtUi" type="Control" unique_id=783213371]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=795863917]
+libraries/ = SubResource("AnimationLibrary_3al3a")
+autoplay = &"Start"
+
+[node name="Panel" type="Panel" parent="." unique_id=1451623129]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48800004
+anchor_top = 0.19000001
+anchor_right = 0.54300004
+anchor_bottom = 0.28800002
+offset_left = -14.640015
+offset_top = -14.800003
+offset_right = 14.959961
+offset_bottom = 14.639984
+rotation = 0.7853982
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="Panel2" type="Panel" parent="." unique_id=401482128]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47700003
+anchor_top = 0.16700001
+anchor_right = 0.555
+anchor_bottom = 0.30600002
+offset_left = -0.5600586
+offset_top = -0.2400055
+offset_right = -0.4000244
+offset_bottom = -0.32002258
+rotation = 3.4690754
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=467608962]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47700003
+anchor_top = 0.164
+anchor_right = 0.554
+anchor_bottom = 0.30400002
+offset_left = 0.4399414
+offset_top = 2.9199982
+offset_right = -0.11999512
+offset_bottom = 3.1347198
+texture = ExtResource("1_3aeh4")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1144115759]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.95800006
+anchor_right = 1.01
+anchor_bottom = 1.1930001
+offset_top = -0.001876831
+offset_right = 0.020004272
+offset_bottom = -0.032585144
+text = "BASS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="TextureRect" unique_id=1556736486]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.071
+anchor_top = 1.2470001
+anchor_right = 3.0920002
+anchor_bottom = 2.3260002
+offset_left = -0.041992188
+offset_top = 0.034347534
+offset_right = -0.016021729
+offset_bottom = 0.03919983
+text = "My Descriptionnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+horizontal_alignment = 1
+autowrap_mode = 1

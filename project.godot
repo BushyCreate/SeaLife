@@ -13,7 +13,17 @@ config_version=5
 config/name="SeaLife"
 run/main_scene="uid://d15rv3udl1s8o"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="uid://cmps4nlqa67uo"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=300
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/size/maximize_disabled=true
 
 [dotnet]
 
@@ -44,6 +54,11 @@ Right={
 LMB={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(108, 25),"global_position":Vector2(120, 85),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+RMB={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(104, 8),"global_position":Vector2(116, 68),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

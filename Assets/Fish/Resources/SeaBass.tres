@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FishBase" format=3 uid="uid://bgorlpttl411b"]
+
+[ext_resource type="Texture2D" uid="uid://cqxnfof6pl4np" path="res://Assets/Fish/Textures/bass.png" id="1_nlini"]
+[ext_resource type="Script" uid="uid://djr5rxbw0ntn2" path="res://Assets/Fish/FishBase.cs" id="2_11w7r"]
+
+[resource]
+script = ExtResource("2_11w7r")
+Name = "Bass"
+Description = "You can play music on this! Wait nevermind wrong bass // Found in the sea."
+Icon = ExtResource("1_nlini")
+metadata/_custom_type_script = "uid://djr5rxbw0ntn2"

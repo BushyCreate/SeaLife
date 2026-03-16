@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://wsxi47iwuu0a"]
 
 [ext_resource type="Script" uid="uid://or01bk51y4kb" path="res://Entities/FishingSpot/FishingSpot.cs" id="1_qbpks"]
+[ext_resource type="Texture2D" uid="uid://c1sd7qrpu3c6t" path="res://Assets/Sprite-0002.png" id="2_2ebrt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oq7w5"]
 height = 0.1
@@ -8,13 +9,36 @@ height = 0.1
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qbpks"]
 height = 0.1
 
-[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "mesh")]
+[sub_resource type="Curve" id="Curve_k8h3x"]
+_data = [Vector2(0.002915457, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lso0p"]
+curve = SubResource("Curve_k8h3x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_b4scq"]
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_lso0p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0goyj"]
+transparency = 1
+albedo_texture = ExtResource("2_2ebrt")
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_trdtp"]
+material = SubResource("StandardMaterial3D_0goyj")
+
+[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "catchTime", "fishTime", "mesh")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_qbpks")
 timer = NodePath("Timer")
+catchTime = NodePath("CatchTimer")
+fishTime = NodePath("FishTime")
 mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=524726031]
+visible = false
 mesh = SubResource("CylinderMesh_oq7w5")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D" unique_id=378397045]
@@ -28,5 +52,21 @@ shape = SubResource("CylinderShape3D_qbpks")
 wait_time = 120.0
 one_shot = true
 
+[node name="CatchTimer" type="Timer" parent="." unique_id=304373882]
+one_shot = true
+
+[node name="FishTime" type="Timer" parent="." unique_id=1755129764]
+wait_time = 0.8
+one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=371605515]
+amount = 2
+speed_scale = 0.4
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_b4scq")
+draw_pass_1 = SubResource("PlaneMesh_trdtp")
+
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CatchTimer" to="." method="FishFound"]
+[connection signal="timeout" from="FishTime" to="." method="FishFled"]

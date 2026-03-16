@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ck32ej8unxqtw" path="res://Entities/Player/Player.cs" id="1_e5kic"]
 [ext_resource type="PackedScene" uid="uid://dams1c0c4rfnl" path="res://Entities/Bobber/Bobber.tscn" id="2_ww0jn"]
+[ext_resource type="PackedScene" uid="uid://c61ehttmrhtsb" path="res://Assets/HUD/CaughtUI.tscn" id="3_1des2"]
+[ext_resource type="Texture2D" uid="uid://vh81bx0pjdjg" path="res://Assets/FishCaught.png" id="3_vweq0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5kic"]
 
@@ -23,14 +25,14 @@ _data = {
 }
 point_count = 3
 
-[node name="Player" type="CharacterBody3D" unique_id=646492556 node_paths=PackedStringArray("body", "path", "pathFollow", "marker")]
+[node name="Player" type="CharacterBody3D" unique_id=646492556 node_paths=PackedStringArray("body", "marker", "caughtSprite")]
 script = ExtResource("1_e5kic")
 rotationSpeed = 5.0
 body = NodePath("MeshInstance3D")
 bobberScene = ExtResource("2_ww0jn")
-path = NodePath("Path3D")
-pathFollow = NodePath("Path3D/PathFollow3D")
 marker = NodePath("MeshInstance3D/Marker3D")
+caughtSprite = NodePath("Sprite3D")
+popUpScene = ExtResource("3_1des2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1211070290]
 mesh = SubResource("CapsuleMesh_u36tg")
@@ -54,3 +56,17 @@ curve = SubResource("Curve3D_ww0jn")
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=172476339]
 transform = Transform3D(-0.99999845, 8.742252e-08, 0, -6.574332e-08, -0.7520149, -0.6591422, -5.7624078e-08, -0.6591417, 0.7520154, 0, 0.7299904, -0.30323935)
 progress = 1.0673676
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1871481878]
+size = Vector2i(16, 16)
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport" unique_id=1707937346]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=366645415]
+transform = Transform3D(5.710332, 0, 0, 0, 5.710332, 0, 0, 0, 5.710332, 0, 1.6661179, 0)
+visible = false
+billboard = 1
+texture_filter = 2
+texture = ExtResource("3_vweq0")

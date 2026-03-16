@@ -4,7 +4,7 @@ using System.Linq;
 
 public partial class Player : CharacterBody3D
 {
-	public const float Speed = 5.0f;
+	public float Speed = 5.0f;
 	public const float JumpVelocity = 4.5f;
 
 	[Export] public float rotationSpeed = 2;
@@ -12,9 +12,13 @@ public partial class Player : CharacterBody3D
 	[Export] public PackedScene bobberScene;
 	[Export] public Marker3D marker;
 	[Export] public HUDManager HUDManager;
-
+	[Export] public Sprite3D caughtSprite;
+	[Export] public CanvasLayer canvas;
+	[Export] public PackedScene popUpScene;
 	private bool bobberOut;
 	private Bobber bobber;
+	private Control currentPopUp;
+	private Timer timer;
 
 	Vector3 lastdirection = Vector3.Forward;
 
@@ -23,6 +27,8 @@ public partial class Player : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
+		if (bobberOut) { Speed = 0; } else { Speed = 5.0f; }
+
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
@@ -30,7 +36,6 @@ public partial class Player : CharacterBody3D
 		}
 
 		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 inputDir = Input.GetVector("Left", "Right", "Forward", "Backward");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (direction != Vector3.Zero)
@@ -77,24 +82,12 @@ public partial class Player : CharacterBody3D
 
 		}
 	}
-
-	private Vector3 GetMouseWorldPosition(Vector2 mouse)
-	{
-		var space = GetWorld3D().DirectSpaceState;
-		var start = GetViewport().GetCamera3D().ProjectRayOrigin(mouse);
-		var end = GetViewport().GetCamera3D().ProjectPosition(mouse, 1000);
-		PhysicsRayQueryParameters3D rayParams = PhysicsRayQueryParameters3D.Create(from: start, to: end);
-		var result = space.IntersectRay(rayParams);
-		if (!result.ContainsKey("position")) { return Vector3.Zero; }
-		Vector3 pos = (Vector3)result["position"];
-		return pos;
-	}
-
 	private void HandleRod()
 	{
-		if (bobber.caught)
+		if (bobber.caught && bobber.fish != null)
 		{
 			bobberOut = false;
+			CreatePopUp(bobber.fish);
 			OnFishCaught();
 		}
 	}
@@ -106,5 +99,29 @@ public partial class Player : CharacterBody3D
 		bobberOut = false;
 	}
 
+	private void CreatePopUp(FishBase fish)
+	{
+		currentPopUp = popUpScene.Instantiate<Control>();
+		canvas.AddChild(currentPopUp);
+		var Texture = currentPopUp.GetChild<TextureRect>(3);
+		var Title = Texture.GetChild<Label>(0);
+		var Description = Texture.GetChild<Label>(1);
+		Texture.Texture = fish.Icon;
+		Title.Text = fish.Name;
+		Description.Text = fish.Description;
+
+		// Create a timer so the popup disappears after a few seconds.
+		timer = new Timer();
+		GetTree().Root.AddChild(timer);
+		timer.WaitTime = 3f;
+		timer.OneShot = true;
+		timer.Start();
+		timer.Timeout += RemovePopUp;
+	}
+	private void RemovePopUp()
+	{
+		currentPopUp.QueueFree();
+		timer.QueueFree();
+	}
 }
 

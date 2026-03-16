@@ -4,6 +4,7 @@ using System;
 public partial class Bobber : CharacterBody3D
 {
     public bool caught = false;
+    public FishBase fish = null;
     public override void _PhysicsProcess(double delta)
     {
 

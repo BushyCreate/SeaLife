@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bpl8tddf2aaxj"]
 
 [ext_resource type="Script" uid="uid://b518pix3a43jq" path="res://Assets/HUD/HUDManager.cs" id="1_tptic"]
+[ext_resource type="Texture2D" uid="uid://c3b7r4spbgnef" path="res://Assets/Logo/Bijlage 2 - Logo.png" id="2_5dif2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0axmq"]
 bg_color = Color(0.90062386, 0.92110485, 7.70092e-07, 1)
@@ -35,6 +36,13 @@ anchor_right = 0.38200003
 anchor_bottom = 0.10300001
 offset_right = -0.06402588
 offset_bottom = 0.2559967
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=919422794]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+texture = ExtResource("2_5dif2")
+expand_mode = 1
 
 [node name="ColorRect" type="Panel" parent="HBoxContainer" unique_id=102174188]
 layout_mode = 2

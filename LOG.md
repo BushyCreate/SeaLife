@@ -14,4 +14,5 @@
 	Had a conversation with mvr jacobs and she thought the project was good so far.
 	Published a bugtesting build.
 17/03/26
-	Created a tutorial world. This is where you learn about how to play the game
+	Created a tutorial world. This is where you learn about how to play the game.
+	Created a second build since the first was broken.

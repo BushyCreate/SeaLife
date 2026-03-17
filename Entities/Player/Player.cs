@@ -19,8 +19,14 @@ public partial class Player : CharacterBody3D
 	private Bobber bobber;
 	private Control currentPopUp;
 	private Timer timer;
+	private Vector3 spawnLocation;
 
 	Vector3 lastdirection = Vector3.Forward;
+
+	public override void _Ready()
+	{
+		spawnLocation = GlobalPosition;
+	}
 
 
 	public override void _PhysicsProcess(double delta)
@@ -28,7 +34,7 @@ public partial class Player : CharacterBody3D
 		Vector3 velocity = Velocity;
 
 		if (bobberOut) { Speed = 0; } else { Speed = 5.0f; }
-
+		if (GlobalPosition.Y < 0) { GlobalPosition = spawnLocation; }
 		// Add the gravity.
 		if (!IsOnFloor())
 		{

@@ -14,6 +14,8 @@ public partial class FishingSpot : Node3D
 
 	[Export] FishBase[] CatchableFish;
 
+	[Signal] public delegate void CaughtEventEventHandler();
+
 	private Bobber bob;
 
 	public FishingSpot()
@@ -80,5 +82,6 @@ public partial class FishingSpot : Node3D
 		{
 			Restock();
 		}
+		EmitSignal(SignalName.CaughtEvent);
 	}
 }

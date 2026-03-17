@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d2pnlp8388gah"]
+
+[ext_resource type="Script" uid="uid://bkipe7se8ylml" path="res://Entities/Sign/Sign.cs" id="1_vfot7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfot7"]
+albedo_color = Color(0.5990635, 0.29351583, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vfot7"]
+material = SubResource("StandardMaterial3D_vfot7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1t3d"]
+albedo_color = Color(0.5990635, 0.29351583, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf1sv"]
+material = SubResource("StandardMaterial3D_u1t3d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bh20p"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u1t3d"]
+bottom_radius = 1.3
+height = 0.1
+
+[node name="Sign" type="Node3D" unique_id=804435372]
+script = ExtResource("1_vfot7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1991384785]
+transform = Transform3D(0.3, 0, 0, 0, 0.5, 0, 0, 0, 0.3, 0, 0.4504, 0)
+mesh = SubResource("CylinderMesh_vfot7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=123594532]
+transform = Transform3D(4.519865, 0, 0, 0, 1.7134256, 0, 0, 0, 1, 0, 0.75165296, -0.15433908)
+mesh = SubResource("BoxMesh_yf1sv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D" unique_id=846376138]
+transform = Transform3D(3.83675, 0, 0, 0, 1.53973, 0, 0, 0, 0.5425247, 0, 0.75165296, 0.2896301)
+mesh = SubResource("BoxMesh_bh20p")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=929414312]
+mesh = SubResource("CylinderMesh_u1t3d")

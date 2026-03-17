@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfvjk568qywqm"]
+
+[ext_resource type="Script" uid="uid://bhucri6r2q4c0" path="res://Entities/SceneChangerSpot/SceneChangerSpot.cs" id="1_0cki4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7d6ph"]
+
+[node name="SceneChangerSpot" type="Area3D" unique_id=1265281843]
+script = ExtResource("1_0cki4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2052271297]
+shape = SubResource("BoxShape3D_7d6ph")

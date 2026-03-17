@@ -8,6 +8,13 @@ material = SubResource("StandardMaterial3D_52ai7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_basqs"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_is0yp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xpc4b"]
+material = SubResource("StandardMaterial3D_is0yp")
+
 [node name="Blocks" type="Node3D" unique_id=233366814]
 
 [node name="GreenBlock" type="MeshInstance3D" parent="." unique_id=2115710601]
@@ -16,6 +23,14 @@ mesh = SubResource("BoxMesh_is0yp")
 [node name="StaticBody3D" type="StaticBody3D" parent="GreenBlock" unique_id=877444810]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GreenBlock/StaticBody3D" unique_id=1206148740]
+shape = SubResource("BoxShape3D_basqs")
+
+[node name="InvisBlock" type="MeshInstance3D" parent="." unique_id=1219088920]
+mesh = SubResource("BoxMesh_xpc4b")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="InvisBlock" unique_id=204849574]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InvisBlock/StaticBody3D" unique_id=1975771176]
 shape = SubResource("BoxShape3D_basqs")
 
 [node name="YellowBlock" type="MeshInstance3D" parent="." unique_id=148470742]

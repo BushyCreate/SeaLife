@@ -11,12 +11,20 @@ config_version=5
 [application]
 
 config/name="SeaLife"
-run/main_scene="uid://d15rv3udl1s8o"
+run/main_scene="uid://dcr33d44cbqnc"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 boot_splash/bg_color=Color(1, 1, 1, 1)
 boot_splash/image="uid://cmps4nlqa67uo"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=300
+
+[autoload]
+
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[dialogue_manager]
+
+runtime/advanced/uses_dotnet=true
 
 [display]
 
@@ -28,6 +36,10 @@ window/size/maximize_disabled=true
 [dotnet]
 
 project/assembly_name="SeaLife"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -61,6 +73,10 @@ RMB={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(104, 8),"global_position":Vector2(116, 68),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://Assets/Dialogue/sign01.dialogue", "res://Assets/Dialogue/sign02.dialogue", "res://Assets/Dialogue/sign03.dialogue", "res://Assets/Dialogue/sign04.dialogue")
 
 [layer_names]
 

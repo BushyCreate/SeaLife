@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://mgrufmn7ola3"]
+
+[ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="1_8a582"]
+[ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="2_vqqba"]
+[ext_resource type="PackedScene" uid="uid://bpl8tddf2aaxj" path="res://Assets/HUD/Default.tscn" id="3_65mjx"]
+[ext_resource type="MeshLibrary" uid="uid://dk3yanro1hwlu" path="res://Assets/Models/Block.meshlib" id="4_t26xa"]
+[ext_resource type="PackedScene" uid="uid://dfwlxvk8baw7d" path="res://Entities/Bridge/Bridge.tscn" id="5_vqqba"]
+[ext_resource type="PackedScene" uid="uid://wsxi47iwuu0a" path="res://Entities/FishingSpot/FishingSpot.tscn" id="6_65mjx"]
+[ext_resource type="Resource" uid="uid://bgorlpttl411b" path="res://Assets/Fish/Resources/SeaBass.tres" id="7_t26xa"]
+[ext_resource type="Resource" uid="uid://dvu0vlmyl85b7" path="res://Assets/Fish/Resources/Goldfish.tres" id="8_v7dp7"]
+[ext_resource type="PackedScene" uid="uid://d2pnlp8388gah" path="res://Entities/Sign/Sign.tscn" id="9_qf64o"]
+[ext_resource type="Resource" uid="uid://dggn8rigwhhhu" path="res://Assets/Dialogue/sign01.dialogue" id="10_kv3nv"]
+[ext_resource type="Resource" uid="uid://b1w006vp8dkjo" path="res://Assets/Dialogue/sign02.dialogue" id="11_kv3nv"]
+[ext_resource type="Resource" uid="uid://c36px8rmm1r8u" path="res://Assets/Dialogue/sign03.dialogue" id="12_54j8a"]
+[ext_resource type="PackedScene" uid="uid://qa1l7khr5cpp" path="res://Entities/SellSpot/SellSpot.tscn" id="12_ufv36"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7dp7"]
+render_priority = 0
+shader = ExtResource("1_8a582")
+shader_parameter/color1 = Color(0, 0, 1, 1)
+shader_parameter/color2 = Color(0, 0.49411765, 1, 1)
+shader_parameter/color3 = Color(0, 0, 1, 1)
+shader_parameter/x_amount = 4096.0
+shader_parameter/y_amount = 4096.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_oj1el"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qf64o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kv3nv"]
+
+[sub_resource type="Sky" id="Sky_a2b5d"]
+sky_material = SubResource("ProceduralSkyMaterial_kv3nv")
+
+[sub_resource type="Environment" id="Environment_ufv36"]
+background_mode = 2
+background_energy_multiplier = 3.0
+sky = SubResource("Sky_a2b5d")
+ambient_light_source = 3
+ambient_light_color = Color(0.3470683, 0.3470683, 0.3470683, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t26xa"]
+size = Vector3(1, 8.915161, 1)
+
+[node name="Tutorial" type="Node3D" unique_id=131679683]
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1652291604]
+transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -1.3631296, 0)
+material_override = SubResource("ShaderMaterial_v7dp7")
+mesh = SubResource("BoxMesh_oj1el")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Water" unique_id=1117580956]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/StaticBody3D" unique_id=895356523]
+shape = SubResource("BoxShape3D_qf64o")
+
+[node name="Player" parent="." unique_id=646492556 node_paths=PackedStringArray("HUDManager", "canvas") groups=["Player"] instance=ExtResource("2_vqqba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9418907, 1.0399389, 0.535336)
+HUDManager = NodePath("../CanvasLayer/Default")
+canvas = NodePath("../CanvasLayer")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1042728453]
+environment = SubResource("Environment_ufv36")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1318560659]
+
+[node name="Default" parent="CanvasLayer" unique_id=1091279904 instance=ExtResource("3_65mjx")]
+
+[node name="GridMap" type="GridMap" parent="." unique_id=544031572]
+mesh_library = ExtResource("4_t26xa")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-12, 65532, 393217, -12, 65533, 393217, -12, 65534, 393217, -12, 65535, 393217, -12, 0, 393217, -12, 1, 393217, -12, 2, 393217, -11, 65531, 393217, -11, 65532, 393217, -11, 65533, 393216, -11, 65534, 393216, -11, 65535, 393216, -11, 0, 393216, -11, 1, 393216, -11, 2, 393217, -11, 3, 393217, -10, 65531, 393217, -10, 65532, 393216, -10, 65533, 393216, -10, 65534, 393216, -10, 65535, 393216, -10, 0, 393216, -10, 1, 393216, -10, 2, 393216, -10, 3, 393217, -9, 65531, 393217, -9, 65532, 393216, -9, 65533, 393216, -9, 65534, 393216, -9, 65535, 393216, -9, 0, 393216, -9, 1, 393216, -9, 2, 393216, -9, 3, 393217, -8, 65531, 393217, -8, 65532, 393216, -8, 65533, 393216, -8, 65534, 393216, -8, 65535, 393216, -8, 0, 393216, -8, 1, 393216, -8, 2, 393216, -8, 3, 393217, -7, 65531, 393217, -7, 65532, 393216, -7, 65533, 393216, -7, 65534, 393216, -7, 65535, 393216, -7, 0, 393216, -7, 1, 393216, -7, 2, 393216, -7, 3, 393217, -6, 65531, 393217, -6, 65532, 393216, -6, 65533, 393216, -6, 65534, 393216, -6, 65535, 393216, -6, 0, 393216, -6, 1, 393216, -6, 2, 393216, -6, 3, 393217, -5, 65531, 393217, -5, 65532, 393217, -5, 65533, 393216, -5, 65534, 393216, -5, 65535, 393216, -5, 0, 393216, -5, 1, 393216, -5, 2, 393217, -5, 3, 393217, -4, 65532, 393217, -4, 65533, 393217, -4, 65534, 393217, -4, 65535, 393217, -4, 0, 393217, -4, 1, 393217, -4, 2, 393217, -65529, 65535, 393216, -65530, 65535, 393216, -65529, 65534, 393216, -65530, 65534, 393216, -65529, 65532, 393216, -65529, 65533, 393216, -65530, 65533, 393216, -65530, 65532, 393216, -65531, 65533, 393217, -65531, 65532, 393217, -65531, 65534, 393217, -65531, 65535, 393217, -65531, 65531, 393217, -65530, 65531, 393217, -65529, 65531, 393216, -65528, 65531, 393216, -65527, 65531, 393216, -65527, 65532, 327681, -65528, 65533, 327681, -65528, 65534, 327681, -65528, 65535, 327681, -65528, 65532, 393216, -65530, 65530, 393217, -65529, 65530, 393217, -65528, 65530, 393217, -65527, 65530, 393217, -65530, 0, 393216, -65529, 0, 393216, -65528, 0, 327681, -65529, 1, 393216, -65528, 1, 327681, -65527, 1, 327681, -65531, 0, 393217, -65531, 1, 393217, -65531, 2, 393217, -65530, 2, 393217, -65530, 1, 393216, -65529, 2, 393216, -65528, 2, 393216, -65527, 2, 393216, -65530, 3, 393217, -65529, 3, 393217, -65528, 3, 393217, -65527, 3, 393217, -65526, 2, 393216, -65526, 1, 327681, -65526, 65532, 327681, -65526, 65531, 393217, -65525, 65532, 327681, -65525, 1, 327681, -65526, 3, 393217, -65525, 2, 327681, -65525, 65531, 393217, -65526, 65530, 393217, -65524, 65532, 327681, -65524, 2, 327681, -65523, 65532, 327681, -65523, 2, 327681, -65522, 65532, 327681, -65522, 1, 327681, -65522, 2, 393216, -65521, 65532, 327681, -65521, 0, 327681, -65521, 1, 327681, -65521, 2, 393216, -65520, 65532, 327681, -65520, 65535, 327681, -65520, 0, 327681, -65520, 1, 393216, -65520, 2, 393216, -65519, 65532, 327681, -65519, 65533, 327681, -65519, 65534, 327681, -65519, 65535, 327681, -65519, 0, 393216, -65519, 1, 393216, -65519, 2, 393216, -65518, 65532, 393216, -65518, 65533, 393216, -65518, 65534, 393216, -65518, 65535, 393216, -65518, 0, 393216, -65518, 1, 393216, -65518, 2, 393216, -65517, 65532, 327681, -65517, 65533, 393216, -65517, 65534, 393216, -65517, 65535, 393216, -65517, 0, 393216, -65517, 1, 393216, -65517, 2, 327681, -65525, 3, 393217, -65524, 3, 393217, -65523, 3, 393217, -65522, 3, 393217, -65521, 3, 393217, -65520, 3, 393217, -65519, 3, 393217, -65518, 3, 393217, -65517, 3, 393217, -65516, 65532, 327681, -65516, 65533, 327681, -65516, 65534, 327681, -65516, 65535, 327681, -65516, 0, 327681, -65516, 1, 327681, -65516, 2, 327681, -65516, 3, 327681, -65524, 65531, 327681, -65523, 65531, 327681, -65522, 65531, 327681, -65521, 65531, 327681, -65520, 65531, 327681, -65519, 65531, 327681, -65518, 65531, 327681, -65517, 65531, 327681, -65516, 65531, 327681, 65524, 1, 1048578, -65527, 65519, 917504, -65528, 65519, 917504, -65529, 65519, 983041, -65530, 65519, 983041, -65527, 65520, 917504, -65527, 65521, 917505, -65528, 65521, 917505, -65528, 65520, 917504, -65529, 65521, 917505, -65529, 65520, 917505, -65526, 65519, 917504, -65526, 65520, 917504, -65525, 65520, 917504, -65525, 65519, 917504, -65525, 65518, 917504, -65525, 65517, 917504, -65525, 65516, 917504, -65526, 65515, 917504, -65525, 65515, 917504, -65525, 65514, 917504, -65524, 65514, 917504, -65523, 65514, 917504, -65523, 65513, 917504, -65522, 65514, 917504, -65522, 65515, 917504, -65522, 65516, 917504, -65523, 65517, 917504, -65523, 65518, 917504, -65524, 65518, 917504, -65524, 65519, 917504, -65523, 65516, 917504, -65523, 65515, 917504, -65524, 65513, 917504, -65524, 65515, 917504, -65524, 65517, 917504, -65524, 65516, 917504, -65522, 65517, 917504, -65522, 65518, 917504, -65521, 65518, 917504, -65522, 65519, 917504, -65522, 65520, 917504, -65523, 65520, 917504, -65523, 65519, 917504, -65521, 65519, 917504, -65520, 65519, 917505, -65520, 65520, 917505, -65521, 65520, 917505, -65524, 65520, 917504, -65526, 65517, 917504, -65526, 65516, 917504, -65527, 65515, 917504, -65527, 65514, 917504, -65526, 65514, 917504, -65525, 65513, 917504, -65526, 65513, 917504, -65527, 65513, 917504, -65520, 65518, 917505, -65520, 65517, 917505, -65520, 65516, 917504, -65520, 65515, 917504, -65520, 65514, 917504, -65520, 65513, 917505, -65521, 65513, 917504, -65522, 65513, 917504, -65521, 65515, 917504, -65521, 65516, 917504, -65521, 65517, 917504, -65521, 65514, 917504, -65527, 65517, 917504, -65528, 65517, 917504, -65528, 65518, 917504, -65527, 65518, 917504, -65526, 65518, 917504, -65527, 65516, 917504, -65528, 65514, 917504, -65528, 65513, 917504, -65528, 65515, 917504, -65528, 65516, 917504, -65529, 65517, 917504, -65528, 65512, 917505, -65529, 65513, 917505, -65529, 65514, 917504, -65529, 65515, 917504, -65529, 65516, 917504, -65529, 65518, 917504, -65529, 65512, 917505, -65527, 65512, 917504, -65526, 65512, 917504, -65525, 65512, 917504, -65524, 65512, 917504, -65523, 65512, 917504, -65522, 65512, 917504, -65521, 65512, 917505, -65520, 65512, 917505, -65530, 65518, 917505, -65530, 65517, 917505, -65530, 65516, 917505, -65530, 65515, 917505, -65530, 65514, 917505, -65530, 65513, 917505, -65530, 65512, 917505, -65528, 65511, 917505, -65527, 65511, 917505, -65526, 65511, 917505, -65525, 65511, 917505, -65524, 65511, 917505, -65523, 65511, 917505, -65522, 65511, 917505, -65521, 65511, 917505, -65520, 65511, 917505, -65519, 65512, 917505, -65519, 65513, 917505, -65519, 65514, 917505, -65518, 65514, 917505, -65518, 65515, 917505, -65518, 65516, 917505, -65519, 65516, 917505, -65519, 65517, 917505, -65519, 65518, 917505, -65519, 65519, 917505, -65519, 65520, 917505, -65519, 65521, 917505, -65520, 65521, 917505, -65520, 65522, 917505, -65521, 65522, 917505, -65522, 65522, 917505, -65523, 65522, 917505, -65524, 65522, 917505, -65525, 65522, 917505, -65526, 65522, 917505, -65527, 65522, 917505, -65526, 65521, 917505, -65525, 65521, 917505, -65524, 65521, 917505, -65523, 65521, 917505, -65522, 65521, 917505, -65521, 65521, 917505, -65519, 65515, 917505, -3, 65512, 786433, -3, 65513, 786433, -3, 65514, 786433, -3, 65515, 786432, -2, 65515, 1, -2, 65516, 1, -2, 65517, 1, -2, 65518, 1, -3, 65519, 1, -3, 65518, 1, -3, 65517, 786432, -3, 65516, 786432, -5, 65513, 786432, -5, 65514, 786432, -5, 65515, 786432, -4, 65515, 786432, -4, 65514, 786432, -4, 65513, 786433, -4, 65512, 786433, -5, 65512, 786433, -5, 65516, 786432, -5, 65517, 786432, -5, 65518, 786432, -4, 65518, 786432, -4, 65519, 786433, -4, 65517, 786432, -5, 65519, 786433, -4, 65516, 786432, -6, 65513, 786432, -6, 65512, 786433, -7, 65512, 786433, -7, 65511, 786433, -7, 65510, 786433, -7, 65509, 786433, -7, 65508, 786433, -7, 65507, 786433, -8, 65506, 786433, -9, 65506, 786433, -8, 65507, 524288, -8, 65508, 524288, -8, 65509, 524288, -8, 65510, 524288, -8, 65511, 524288, -9, 65510, 524288, -9, 65509, 524288, -9, 65508, 524288, -9, 65507, 786433, -10, 65507, 786433, -10, 65508, 786433, -10, 65509, 786433, -10, 65510, 786433, -10, 65511, 786433, -9, 65511, 524288, -8, 65512, 524288, -7, 65513, 786432, -8, 65513, 524288, -9, 65513, 524288, -9, 65512, 524288, -10, 65512, 786433, -10, 65513, 786433, -10, 65514, 786433, -9, 65515, 786432, -8, 65515, 786432, -7, 65515, 786432, -6, 65515, 786432, -6, 65514, 786432, -7, 65514, 786432, -8, 65514, 786432, -9, 65514, 524288, -6, 65516, 786432, -6, 65517, 786432, -7, 65517, 786432, -7, 65516, 786432, -8, 65516, 786432, -9, 65516, 786432, -10, 65515, 786433, -10, 65516, 786433, -10, 65517, 786433, -9, 65517, 786432, -9, 65518, 786432, -8, 65518, 786432, -7, 65518, 786432, -6, 65518, 786432, -8, 65517, 786432, -10, 65518, 786433, -9, 65519, 786433, -8, 65519, 786433, -7, 65519, 786433, -6, 65519, 786433, -2, 65514, 786433, -2, 65513, 786433)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="Bridges" type="Node" parent="." unique_id=926174338]
+
+[node name="BridgeA" parent="Bridges" unique_id=1486055340 instance=ExtResource("5_vqqba")]
+transform = Transform3D(8.469048, 0, 0, 0, 1, 0, 0, 0, 3.8848011, 1.141, -5.507, -0.421)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Bridges/BridgeA" unique_id=2042663887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5.397067, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/BridgeA/StaticBody3D2" unique_id=1012746807]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9575806, 0)
+shape = SubResource("BoxShape3D_t26xa")
+
+[node name="BridgeB" parent="Bridges" unique_id=1359843639 instance=ExtResource("5_vqqba")]
+transform = Transform3D(-3.7019382e-07, 0, 3.8848011, 0, 1, 0, -8.469048, 0, -1.6981005e-07, 8.6480055, -5.507, -9.831028)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Bridges/BridgeB" unique_id=1611183472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5.397067, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/BridgeB/StaticBody3D2" unique_id=942758904]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9575806, 0)
+shape = SubResource("BoxShape3D_t26xa")
+
+[node name="BridgeC" parent="Bridges" unique_id=1236504966 instance=ExtResource("5_vqqba")]
+transform = Transform3D(-8.469016, 0, -0.01044194, 0, 1, 0, 0.022763921, 0, -3.884787, 1.8387542, -5.507, -20.309433)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Bridges/BridgeC" unique_id=283935178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 5.397067, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridges/BridgeC/StaticBody3D2" unique_id=1845536470]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9575806, 0)
+shape = SubResource("BoxShape3D_t26xa")
+
+[node name="FishingSpots" type="Node" parent="." unique_id=1020208487]
+
+[node name="FishingSpot" parent="FishingSpots" unique_id=1163615886 instance=ExtResource("6_65mjx")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -7.5643673, -0.8131301, 7.089896)
+MaxStock = 1
+CatchableFish = Array[Object]([ExtResource("7_t26xa")])
+
+[node name="FishingSpot2" parent="FishingSpots" unique_id=327137031 instance=ExtResource("6_65mjx")]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 13.169367, -0.8416368, -1.3015096)
+MaxStock = 1
+CatchableFish = Array[Object]([ExtResource("8_v7dp7")])
+
+[node name="Signs" type="Node" parent="." unique_id=1895431663]
+
+[node name="Sign" parent="Signs" unique_id=804435372 node_paths=PackedStringArray("player") instance=ExtResource("9_qf64o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5565424, 0.049600054, -3.0308518)
+dialogueFile = ExtResource("10_kv3nv")
+player = NodePath("../../Player")
+
+[node name="Sign2" parent="Signs" unique_id=423784137 node_paths=PackedStringArray("player") instance=ExtResource("9_qf64o")]
+transform = Transform3D(-0.9556183, 0, -0.2946075, 0, 1, 0, 0.2946075, 0, -0.9556183, 7.405389, 0.049600054, 2.571979)
+dialogueFile = ExtResource("11_kv3nv")
+player = NodePath("../../Player")
+
+[node name="Sign3" parent="Signs" unique_id=249815356 node_paths=PackedStringArray("player") instance=ExtResource("9_qf64o")]
+transform = Transform3D(0.8161777, 0, -0.57780045, 0, 1, 0, 0.57780045, 0, 0.8161777, 13.573137, 0.09920011, -21.122417)
+dialogueFile = ExtResource("12_54j8a")
+player = NodePath("../../Player")
+
+[node name="SellSpots" type="Node" parent="." unique_id=690109256]
+
+[node name="SellSpot" parent="SellSpots" unique_id=1048798718 instance=ExtResource("12_ufv36")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 14.068163, 0, -17.130123)
+
+[connection signal="CaughtEvent" from="FishingSpots/FishingSpot" to="Bridges/BridgeA" method="Appear"]
+[connection signal="CaughtEvent" from="FishingSpots/FishingSpot2" to="Bridges/BridgeB" method="Appear"]
+[connection signal="OnSold" from="SellSpots/SellSpot" to="Bridges/BridgeC" method="Appear"]

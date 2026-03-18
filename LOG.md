@@ -20,3 +20,6 @@
 18/03/26:
 	Put the player stats in a proper playerstats node instead of in the hudmanager.
 	Fixed the HUD going crazy when not in 1280x720
+	Added a leaderboard that is connected to a database
+	Finished the tutorial.
+	Added comments around the code so it can be read fine.

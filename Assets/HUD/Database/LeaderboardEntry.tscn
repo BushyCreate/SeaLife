@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cy2vanwjqavg7"]
+
+[node name="LeaderboardEntry" type="HBoxContainer" unique_id=2054969778]
+
+[node name="Label" type="Label" parent="." unique_id=565998478]
+layout_mode = 2
+text = "Peter | 5 | 420"

@@ -16,6 +16,7 @@ public partial class Player : CharacterBody3D
 	[Export] public Sprite3D caughtSprite;
 	[Export] public CanvasLayer canvas;
 	[Export] public PackedScene popUpScene;
+	[Export] public PackedScene leaderboardScene;
 	private bool bobberOut;
 	private Bobber bobber;
 	private Control currentPopUp;
@@ -89,6 +90,11 @@ public partial class Player : CharacterBody3D
 				bobberOut = false;
 			}
 
+		}
+		else if (@event.IsActionPressed("Leaderboard"))
+		{
+			var Leaderboard = leaderboardScene.Instantiate<Control>();
+			canvas.AddChild(Leaderboard);
 		}
 	}
 	private void HandleRod()

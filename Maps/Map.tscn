@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="1_dfrbx"]
 [ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="2_cedf1"]
+[ext_resource type="PackedScene" uid="uid://dkuya8jyqa1ha" path="res://Assets/HUD/Database/Leaderboard.tscn" id="3_icam8"]
 [ext_resource type="PackedScene" uid="uid://bpl8tddf2aaxj" path="res://Assets/HUD/Default.tscn" id="3_sget2"]
 [ext_resource type="PackedScene" uid="uid://qa1l7khr5cpp" path="res://Entities/SellSpot/SellSpot.tscn" id="4_icam8"]
 [ext_resource type="MeshLibrary" uid="uid://dk3yanro1hwlu" path="res://Assets/Models/Block.meshlib" id="5_6lm48"]
@@ -57,6 +58,7 @@ shape = SubResource("BoxShape3D_etk83")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000868, 1.0399389, 0.535336)
 HUDManager = NodePath("../CanvasLayer/Default")
 canvas = NodePath("../CanvasLayer")
+leaderboardScene = ExtResource("3_icam8")
 
 [node name="PlayerStats" parent="Player" index="6" unique_id=832467055 node_paths=PackedStringArray("hudManager")]
 hudManager = NodePath("../../CanvasLayer/Default")

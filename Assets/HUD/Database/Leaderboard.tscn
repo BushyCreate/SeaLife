@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://dkuya8jyqa1ha"]
+
+[ext_resource type="Script" uid="uid://ddk0svmes8yjy" path="res://Assets/HUD/Database/Leaderboard.cs" id="1_70pwi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rdyqd"]
+font_size = 25
+
+[node name="Leaderboard" type="Control" unique_id=93628416 node_paths=PackedStringArray("vBoxContainer", "SubmitButton", "textEdit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70pwi")
+vBoxContainer = NodePath("Panel/ScrollContainer/VBoxContainer")
+SubmitButton = NodePath("Panel/HBoxContainer/Button")
+textEdit = NodePath("Panel/TextEdit")
+
+[node name="Panel" type="Panel" parent="." unique_id=1443370660]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.312
+anchor_right = 0.646
+anchor_bottom = 0.98700005
+offset_left = 0.63998413
+offset_right = -0.2130127
+offset_bottom = 9.359985
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=1080558776]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.287
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 0.3600006
+offset_right = 0.3330078
+offset_bottom = -1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=252234519]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=818890111]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.21400002
+anchor_right = 0.994
+anchor_bottom = 0.30400002
+offset_top = -0.08001709
+offset_right = -0.10699463
+offset_bottom = 0.11997986
+text = "LEADERBOARD"
+label_settings = SubResource("LabelSettings_rdyqd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextEdit" type="TextEdit" parent="Panel" unique_id=1572396655]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.068
+anchor_top = 0.093
+anchor_right = 0.855
+anchor_bottom = 0.149
+offset_left = -0.0133571625
+offset_top = 0.040000916
+offset_right = 0.19970703
+offset_bottom = -0.2800064
+placeholder_text = "ENTER NAME..."
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel" unique_id=618966934]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.002
+anchor_top = 0.15100001
+anchor_right = 0.994
+anchor_bottom = 0.22500001
+offset_left = 0.14666599
+offset_top = 0.27999115
+offset_right = -0.10699463
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer" unique_id=41897597]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Submit Score"
+
+[node name="Button2" type="Button" parent="Panel/HBoxContainer" unique_id=1344357301]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Refresh Leaderboard"

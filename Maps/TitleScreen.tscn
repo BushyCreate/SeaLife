@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://mgrufmn7ola3" path="res://Maps/Tutorial.tscn" id="5_5j0vy"]
 [ext_resource type="PackedScene" uid="uid://d15rv3udl1s8o" path="res://Maps/Map.tscn" id="5_lwjgo"]
 [ext_resource type="Texture2D" uid="uid://c3b7r4spbgnef" path="res://Assets/Logo/Bijlage 2 - Logo.png" id="6_lwjgo"]
+[ext_resource type="AudioStream" uid="uid://ywehaym6twom" path="res://Assets/Audio/ToyKingdom.mp3" id="8_waved"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lwjgo"]
 
@@ -186,3 +187,7 @@ anchor_bottom = 1.0
 offset_top = 0.079956055
 texture = ExtResource("6_lwjgo")
 expand_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=5802454]
+stream = ExtResource("8_waved")
+autoplay = true

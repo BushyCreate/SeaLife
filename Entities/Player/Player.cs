@@ -12,6 +12,7 @@ public partial class Player : CharacterBody3D
 	[Export] public PackedScene bobberScene;
 	[Export] public Marker3D marker;
 	[Export] public HUDManager HUDManager;
+	[Export] public PlayerStats playerStats;
 	[Export] public Sprite3D caughtSprite;
 	[Export] public CanvasLayer canvas;
 	[Export] public PackedScene popUpScene;
@@ -33,9 +34,9 @@ public partial class Player : CharacterBody3D
 	{
 		Vector3 velocity = Velocity;
 
-		if (bobberOut) { Speed = 0; } else { Speed = 5.0f; }
-		if (GlobalPosition.Y < 0) { GlobalPosition = spawnLocation; }
-		// Add the gravity.
+		if (bobberOut) { Speed = 0; } else { Speed = 5.0f; } // Makes it so you cant move when the bobber is out.
+		if (GlobalPosition.Y < 0) { GlobalPosition = spawnLocation; } // If you fall in the water it respawns you.
+																	  // Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
@@ -55,9 +56,11 @@ public partial class Player : CharacterBody3D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 			velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
 		}
+		// Rotates the body towards where you're headed.
 		var bodyrot = body.Rotation;
 		bodyrot.Y = Mathf.LerpAngle(bodyrot.Y, Mathf.Atan2(-lastdirection.X, -lastdirection.Z), (float)delta * rotationSpeed);
 		body.Rotation = bodyrot;
+
 		Velocity = velocity;
 		MoveAndSlide();
 
@@ -72,7 +75,7 @@ public partial class Player : CharacterBody3D
 		if (@event.IsActionPressed("LMB"))
 		{
 
-			if (bobberOut == false)
+			if (bobberOut == false) // Create a bobber
 			{
 				bobber = bobberScene.Instantiate<Bobber>();
 				GetTree().Root.AddChild(bobber);
@@ -80,7 +83,7 @@ public partial class Player : CharacterBody3D
 				bobber.Rotation = body.Rotation;
 				bobberOut = true;
 			}
-			else
+			else // Kill the bobber
 			{
 				bobber.QueueFree();
 				bobberOut = false;
@@ -90,18 +93,18 @@ public partial class Player : CharacterBody3D
 	}
 	private void HandleRod()
 	{
-		if (bobber.caught && bobber.fish != null)
+		if (bobber.caught && bobber.fish != null) // If something is catched show a popup.
 		{
 			bobberOut = false;
 			CreatePopUp(bobber.fish);
 			OnFishCaught();
 		}
 	}
-	private void OnFishCaught()
+	private void OnFishCaught() // Kill the bobber and add a fish.
 	{
 		GD.Print("Caught a fish!");
 		bobber.QueueFree();
-		HUDManager.AddFish();
+		playerStats.AddFish();
 		bobberOut = false;
 	}
 

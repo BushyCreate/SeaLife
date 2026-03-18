@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1sd7qrpu3c6t"
-path.s3tc="res://.godot/imported/Sprite-0002.png-b64b1a44988206c474431fde92997ef6.s3tc.ctex"
+uid="uid://vh81bx0pjdjg"
+path.s3tc="res://.godot/imported/FishCaught.png-02067c5aa14b52855a11c653c553fcbd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprite-0002.png"
-dest_files=["res://.godot/imported/Sprite-0002.png-b64b1a44988206c474431fde92997ef6.s3tc.ctex"]
+source_file="res://Assets/Textures/FishCaught.png"
+dest_files=["res://.godot/imported/FishCaught.png-02067c5aa14b52855a11c653c553fcbd.s3tc.ctex"]
 
 [params]
 

@@ -3,11 +3,15 @@ using System;
 
 public partial class Bobber : CharacterBody3D
 {
+    // Determines if the bobber has caught something
     public bool caught = false;
+
+    // The fish that is caught, null if nothing is caught.
     public FishBase fish = null;
+
+    // Bobber physics
     public override void _PhysicsProcess(double delta)
     {
-
         if (!IsOnFloor())
         {
             var forward_dir = -GlobalTransform.Basis.Z;

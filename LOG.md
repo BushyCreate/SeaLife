@@ -9,10 +9,14 @@
 	Added UI and selling spots. Thats all.
 13/03/26:
 	Made the world and fishing spots prettier.
-16/03/26
+16/03/26:
 	Added a popup that shows the fish that you caught with a icon, name and flavor text.
 	Had a conversation with mvr jacobs and she thought the project was good so far.
 	Published a bugtesting build.
-17/03/26
+17/03/26:
 	Created a tutorial world. This is where you learn about how to play the game.
 	Created a second build since the first was broken.
+	Added talking signs
+18/03/26:
+	Put the player stats in a proper playerstats node instead of in the hudmanager.
+	Fixed the HUD going crazy when not in 1280x720

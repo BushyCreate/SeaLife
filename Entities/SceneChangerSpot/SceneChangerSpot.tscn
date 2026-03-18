@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhucri6r2q4c0" path="res://Entities/SceneChangerSpot/SceneChangerSpot.cs" id="1_0cki4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7d6ph"]
+size = Vector3(5.7958374, 3.293396, 3.965454)
 
 [node name="SceneChangerSpot" type="Area3D" unique_id=1265281843]
 script = ExtResource("1_0cki4")

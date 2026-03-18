@@ -13,6 +13,10 @@
 [ext_resource type="Resource" uid="uid://b1w006vp8dkjo" path="res://Assets/Dialogue/sign02.dialogue" id="11_kv3nv"]
 [ext_resource type="Resource" uid="uid://c36px8rmm1r8u" path="res://Assets/Dialogue/sign03.dialogue" id="12_54j8a"]
 [ext_resource type="PackedScene" uid="uid://qa1l7khr5cpp" path="res://Entities/SellSpot/SellSpot.tscn" id="12_ufv36"]
+[ext_resource type="Resource" uid="uid://cjgxyin8didnt" path="res://Assets/Dialogue/sign04.dialogue" id="13_5du1n"]
+[ext_resource type="PackedScene" uid="uid://c2eeqjb0c8fjr" path="res://Entities/Upgrader/Upgrader.tscn" id="15_bahkr"]
+[ext_resource type="PackedScene" uid="uid://dfvjk568qywqm" path="res://Entities/SceneChangerSpot/SceneChangerSpot.tscn" id="16_cghif"]
+[ext_resource type="PackedScene" uid="uid://d15rv3udl1s8o" path="res://Maps/Map.tscn" id="17_pyevf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v7dp7"]
 render_priority = 0
@@ -60,6 +64,9 @@ shape = SubResource("BoxShape3D_qf64o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9418907, 1.0399389, 0.535336)
 HUDManager = NodePath("../CanvasLayer/Default")
 canvas = NodePath("../CanvasLayer")
+
+[node name="PlayerStats" parent="Player" index="6" unique_id=832467055 node_paths=PackedStringArray("hudManager")]
+hudManager = NodePath("../../CanvasLayer/Default")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1042728453]
 environment = SubResource("Environment_ufv36")
@@ -137,11 +144,29 @@ transform = Transform3D(0.8161777, 0, -0.57780045, 0, 1, 0, 0.57780045, 0, 0.816
 dialogueFile = ExtResource("12_54j8a")
 player = NodePath("../../Player")
 
+[node name="Sign4" parent="Signs" unique_id=1676596065 node_paths=PackedStringArray("player") instance=ExtResource("9_qf64o")]
+transform = Transform3D(-0.4389356, 0, 0.8985182, 0, 1, 0, -0.8985182, 0, -0.4389356, -7.154972, 0.09920011, -18.556759)
+dialogueFile = ExtResource("13_5du1n")
+player = NodePath("../../Player")
+
 [node name="SellSpots" type="Node" parent="." unique_id=690109256]
 
 [node name="SellSpot" parent="SellSpots" unique_id=1048798718 instance=ExtResource("12_ufv36")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 14.068163, 0, -17.130123)
 
+[node name="Upgrader" parent="." unique_id=1788103849 instance=ExtResource("15_bahkr")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.6202464, 0.050000537, -21.932665)
+
+[node name="SceneChangerSpot" parent="." unique_id=1265281843 instance=ExtResource("16_cghif")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.409515, 0, -27.949131)
+scene = ExtResource("17_pyevf")
+
+[node name="CollisionShape3D" parent="SceneChangerSpot" index="0" unique_id=2052271297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056243896, 1.146698, -1.2914429)
+
 [connection signal="CaughtEvent" from="FishingSpots/FishingSpot" to="Bridges/BridgeA" method="Appear"]
 [connection signal="CaughtEvent" from="FishingSpots/FishingSpot2" to="Bridges/BridgeB" method="Appear"]
 [connection signal="OnSold" from="SellSpots/SellSpot" to="Bridges/BridgeC" method="Appear"]
+
+[editable path="Player"]
+[editable path="SceneChangerSpot"]

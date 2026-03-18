@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wsxi47iwuu0a"]
 
 [ext_resource type="Script" uid="uid://or01bk51y4kb" path="res://Entities/FishingSpot/FishingSpot.cs" id="1_qbpks"]
-[ext_resource type="Texture2D" uid="uid://c1sd7qrpu3c6t" path="res://Assets/Sprite-0002.png" id="2_2ebrt"]
+[ext_resource type="Texture2D" uid="uid://c1sd7qrpu3c6t" path="res://Assets/Textures/Sprite-0002.png" id="2_2ebrt"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oq7w5"]
 height = 0.1

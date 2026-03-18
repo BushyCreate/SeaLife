@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://b7moi6g865iko" path="res://Assets/Fish/Resources/Tuna.tres" id="10_wwgeu"]
 [ext_resource type="Resource" uid="uid://c2aowia0hmbx5" path="res://Assets/Fish/Resources/Salmon.tres" id="11_pr54o"]
 [ext_resource type="Resource" uid="uid://bgorlpttl411b" path="res://Assets/Fish/Resources/SeaBass.tres" id="12_yo1d1"]
+[ext_resource type="PackedScene" uid="uid://c2eeqjb0c8fjr" path="res://Entities/Upgrader/Upgrader.tscn" id="13_cedf1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etk83"]
 render_priority = 0
@@ -46,8 +47,8 @@ material_override = SubResource("ShaderMaterial_etk83")
 mesh = SubResource("BoxMesh_7yn8b")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Water" unique_id=200723132]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/StaticBody3D" unique_id=1692769041]
 shape = SubResource("BoxShape3D_etk83")
@@ -56,6 +57,9 @@ shape = SubResource("BoxShape3D_etk83")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2000868, 1.0399389, 0.535336)
 HUDManager = NodePath("../CanvasLayer/Default")
 canvas = NodePath("../CanvasLayer")
+
+[node name="PlayerStats" parent="Player" index="6" unique_id=832467055 node_paths=PackedStringArray("hudManager")]
+hudManager = NodePath("../../CanvasLayer/Default")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=681438347]
 environment = SubResource("Environment_etk83")
@@ -157,3 +161,8 @@ CatchableFish = Array[Object]([ExtResource("10_wwgeu"), ExtResource("11_pr54o"),
 [node name="FishingSpot" parent="Fishing Spots" unique_id=1163615886 instance=ExtResource("6_1f10b")]
 transform = Transform3D(3.5, 0, 0, 0, 1, 0, 0, 0, 3.5, -11.132787, -1.7393286, -1.7147105)
 CatchableFish = Array[Object]([ExtResource("10_wwgeu"), ExtResource("11_pr54o"), ExtResource("12_yo1d1")])
+
+[node name="Upgrader" parent="." unique_id=1788103849 instance=ExtResource("13_cedf1")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5209631, 0.0899394, -4.2628126)
+
+[editable path="Player"]

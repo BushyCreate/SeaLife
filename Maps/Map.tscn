@@ -14,6 +14,9 @@
 [ext_resource type="Resource" uid="uid://c2aowia0hmbx5" path="res://Assets/Fish/Resources/Salmon.tres" id="11_pr54o"]
 [ext_resource type="Resource" uid="uid://bgorlpttl411b" path="res://Assets/Fish/Resources/SeaBass.tres" id="12_yo1d1"]
 [ext_resource type="PackedScene" uid="uid://c2eeqjb0c8fjr" path="res://Entities/Upgrader/Upgrader.tscn" id="13_cedf1"]
+[ext_resource type="PackedScene" uid="uid://bxim842j6h4fk" path="res://Assets/Models/KenneyModels/FBX format/ship-pirate-large.fbx" id="15_1f10b"]
+[ext_resource type="PackedScene" uid="uid://xy0ewmh208us" path="res://Assets/Models/KenneyModels/FBX format/palm-bend.fbx" id="16_7t22i"]
+[ext_resource type="PackedScene" uid="uid://d3o0tpd5l32xv" path="res://Assets/Models/KenneyModels/FBX format/palm-straight.fbx" id="17_8vcjt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etk83"]
 render_priority = 0
@@ -43,7 +46,7 @@ ambient_light_color = Color(0.3470683, 0.3470683, 0.3470683, 1)
 [node name="Node3D" type="Node3D" unique_id=1381205367]
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=240045044]
-transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -1.3631296, 0)
+transform = Transform3D(500.27298, 0, 0, 0, 1.000546, 0, 0, 0, 500.27298, 0, -1.3631296, 0)
 material_override = SubResource("ShaderMaterial_etk83")
 mesh = SubResource("BoxMesh_7yn8b")
 
@@ -166,5 +169,16 @@ CatchableFish = Array[Object]([ExtResource("10_wwgeu"), ExtResource("11_pr54o"),
 
 [node name="Upgrader" parent="." unique_id=1788103849 instance=ExtResource("13_cedf1")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5209631, 0.0899394, -4.2628126)
+
+[node name="Decoration" type="Node" parent="." unique_id=985335085]
+
+[node name="ship-pirate-large" parent="Decoration" unique_id=1843819535 instance=ExtResource("15_1f10b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.952766, -0.8631301, 3.231656)
+
+[node name="palm-bend" parent="Decoration" unique_id=794566149 instance=ExtResource("16_7t22i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.393459, -0.28310394, 5.2493763)
+
+[node name="palm-straight" parent="Decoration" unique_id=798042552 instance=ExtResource("17_8vcjt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.719691, -0.34973478, -4.434643)
 
 [editable path="Player"]

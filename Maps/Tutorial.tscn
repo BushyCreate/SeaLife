@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="1_8a582"]
 [ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="2_vqqba"]
 [ext_resource type="PackedScene" uid="uid://bpl8tddf2aaxj" path="res://Assets/HUD/Default.tscn" id="3_65mjx"]
+[ext_resource type="PackedScene" uid="uid://dkuya8jyqa1ha" path="res://Assets/HUD/Database/Leaderboard.tscn" id="3_pyevf"]
 [ext_resource type="MeshLibrary" uid="uid://dk3yanro1hwlu" path="res://Assets/Models/Block.meshlib" id="4_t26xa"]
 [ext_resource type="PackedScene" uid="uid://dfwlxvk8baw7d" path="res://Entities/Bridge/Bridge.tscn" id="5_vqqba"]
 [ext_resource type="PackedScene" uid="uid://wsxi47iwuu0a" path="res://Entities/FishingSpot/FishingSpot.tscn" id="6_65mjx"]
@@ -64,6 +65,7 @@ shape = SubResource("BoxShape3D_qf64o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9418907, 1.0399389, 0.535336)
 HUDManager = NodePath("../CanvasLayer/Default")
 canvas = NodePath("../CanvasLayer")
+leaderboardScene = ExtResource("3_pyevf")
 
 [node name="PlayerStats" parent="Player" index="6" unique_id=832467055 node_paths=PackedStringArray("hudManager")]
 hudManager = NodePath("../../CanvasLayer/Default")

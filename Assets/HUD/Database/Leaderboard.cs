@@ -8,10 +8,12 @@ public partial class Leaderboard : Control
 	[Export] VBoxContainer vBoxContainer;
 	[Export] Button SubmitButton;
 	[Export] TextEdit textEdit;
+	[Export] Button closeButton;
 
-	public override void _Ready()
+	public override void _Ready() // Get all the users.
 	{
 		SubmitButton.Pressed += AddNewEntryToDatabase;
+		closeButton.Pressed += CloseLeaderboard;
 		var httpRequest = new HttpRequest();
 		AddChild(httpRequest);
 		httpRequest.RequestCompleted += onRequestComplete;
@@ -22,7 +24,7 @@ public partial class Leaderboard : Control
 		}
 	}
 
-	private void onRequestComplete(long result, long responseCode, string[] headers, byte[] body)
+	private void onRequestComplete(long result, long responseCode, string[] headers, byte[] body) // Executed when the http request is completed
 	{
 		Json json = new Json();
 		json.Parse(body.GetStringFromUtf8());
@@ -33,7 +35,7 @@ public partial class Leaderboard : Control
 			var arr = users.Values.ToArray();
 			for (int i = 0; i < users.Values.Count / 3; i++)
 			{
-				CreateEntry(arr[i], arr[i + 1], arr[i + 2]);
+				CreateEntry(arr[i + 2], arr[i], arr[i + 1]);
 			}
 
 		}
@@ -50,9 +52,8 @@ public partial class Leaderboard : Control
 		vBoxContainer.AddChild(label);
 	}
 
-	private void AddNewEntryToDatabase()
+	private void AddNewEntryToDatabase() // Adds a new entry to the database
 	{
-		Json json = new Json();
 		var httpRequest = new HttpRequest();
 		AddChild(httpRequest);
 		var PlayerName = textEdit.Text;
@@ -69,5 +70,10 @@ public partial class Leaderboard : Control
 		string str = Json.Stringify(PlayerData);
 		httpRequest.Request("https://sea-life-7534c-default-rtdb.europe-west1.firebasedatabase.app/users.json", [], HttpClient.Method.Post, str);
 
+	}
+
+	private void CloseLeaderboard()
+	{
+		QueueFree();
 	}
 }

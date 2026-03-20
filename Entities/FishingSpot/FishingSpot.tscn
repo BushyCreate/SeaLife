@@ -29,13 +29,13 @@ texture_filter = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_trdtp"]
 material = SubResource("StandardMaterial3D_0goyj")
 
-[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "catchTime", "fishTime", "mesh")]
+[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "catchTime", "fishTime", "particles")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_qbpks")
 timer = NodePath("Timer")
 catchTime = NodePath("CatchTimer")
 fishTime = NodePath("FishTime")
-mesh = NodePath("MeshInstance3D")
+particles = NodePath("GPUParticles3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=524726031]
 visible = false

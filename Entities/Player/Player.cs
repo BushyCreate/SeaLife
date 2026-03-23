@@ -22,6 +22,7 @@ public partial class Player : CharacterBody3D
 	private Control currentPopUp;
 	private Timer timer;
 	private Vector3 spawnLocation;
+	private Leaderboard leaderboard;
 
 	Vector3 lastdirection = Vector3.Forward;
 
@@ -93,8 +94,9 @@ public partial class Player : CharacterBody3D
 		}
 		else if (@event.IsActionPressed("Leaderboard"))
 		{
-			var Leaderboard = leaderboardScene.Instantiate<Control>();
-			canvas.AddChild(Leaderboard);
+			leaderboard = leaderboardScene.Instantiate<Leaderboard>();
+			canvas.AddChild(leaderboard);
+
 		}
 	}
 	private void HandleRod()

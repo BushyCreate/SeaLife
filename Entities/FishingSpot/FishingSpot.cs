@@ -86,6 +86,11 @@ public partial class FishingSpot : Node3D
 		fishFound = false;
 		Player player = GetTree().GetNodesInGroup("Player")[0] as Player;
 		player.caughtSprite.Visible = false;
+		CurrentStock--;
+		if (CurrentStock == 0) // if no stock left restock.
+		{
+			Restock();
+		}
 	}
 
 

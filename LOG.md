@@ -23,3 +23,7 @@
 	Added a leaderboard that is connected to a database
 	Finished the tutorial.
 	Added comments around the code so it can be read fine.
+23/03/26:
+	Fixed the bug where all the fishing spots disappeared after catching a fish.
+	Added Sounds and particles!!!
+	Updated multiple shaders.

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://or01bk51y4kb" path="res://Entities/FishingSpot/FishingSpot.cs" id="1_qbpks"]
 [ext_resource type="Texture2D" uid="uid://c1sd7qrpu3c6t" path="res://Assets/Textures/Sprite-0002.png" id="2_2ebrt"]
+[ext_resource type="AudioStream" uid="uid://wpx3ab1voc3n" path="res://Assets/Audio/SFX/splash.mp3" id="3_lso0p"]
+[ext_resource type="AudioStream" uid="uid://dm08f6icsfiw4" path="res://Assets/Audio/SFX/stardew.mp3" id="4_b4scq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_oq7w5"]
 height = 0.1
@@ -29,13 +31,31 @@ texture_filter = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_trdtp"]
 material = SubResource("StandardMaterial3D_0goyj")
 
-[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "catchTime", "fishTime", "particles")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lso0p"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lso0p"]
+shading_mode = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b4scq"]
+material = SubResource("StandardMaterial3D_lso0p")
+top_radius = 0.0
+bottom_radius = 0.915
+height = 1.0
+
+[node name="FishingSpot" type="Node3D" unique_id=1163615886 node_paths=PackedStringArray("timer", "catchTime", "fishTime", "particles", "particlesCaught", "idleSound", "foundSound")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_qbpks")
 timer = NodePath("Timer")
 catchTime = NodePath("CatchTimer")
 fishTime = NodePath("FishTime")
-particles = NodePath("GPUParticles3D")
+particles = NodePath("SpotParticles")
+particlesCaught = NodePath("GPUParticles3D2")
+idleSound = NodePath("idleSound")
+foundSound = NodePath("foundSound")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=524726031]
 visible = false
@@ -59,12 +79,30 @@ one_shot = true
 wait_time = 0.8
 one_shot = true
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=371605515]
+[node name="SpotParticles" type="GPUParticles3D" parent="." unique_id=371605515]
 amount = 2
 speed_scale = 0.4
-fixed_fps = 60
+fixed_fps = 120
 process_material = SubResource("ParticleProcessMaterial_b4scq")
 draw_pass_1 = SubResource("PlaneMesh_trdtp")
+
+[node name="idleSound" type="AudioStreamPlayer" parent="." unique_id=590265372]
+stream = ExtResource("3_lso0p")
+
+[node name="foundSound" type="AudioStreamPlayer" parent="." unique_id=724241806]
+stream = ExtResource("4_b4scq")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=428115542]
+emitting = false
+amount = 1
+one_shot = true
+fixed_fps = 120
+process_material = SubResource("ParticleProcessMaterial_lso0p")
+draw_passes = 4
+draw_pass_1 = SubResource("CylinderMesh_b4scq")
+draw_pass_2 = null
+draw_pass_3 = null
+draw_pass_4 = null
 
 [connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

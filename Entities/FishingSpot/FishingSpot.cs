@@ -15,9 +15,11 @@ public partial class FishingSpot : Node3D
 	[Export] Timer catchTime; // The time left until ! appears
 	[Export] Timer fishTime; // The time left until the fish flees
 	private bool fishFound; // Is a fish found
-	[Export] GpuParticles3D particles; // The spot particles
-
+	GpuParticles3D particles; // The spot particles
+	[Export] GpuParticles3D particlesCaught; // Played when a fish is caught.
 	[Export] FishBase[] CatchableFish; // A array with all the catchable fish in it
+	[Export] AudioStreamPlayer idleSound; // Sound that plays when a bobber is in the fishing spot
+	[Export] AudioStreamPlayer foundSound; // Sound that plays when a fish is found.
 
 	[Signal] public delegate void CaughtEventEventHandler(); // Signal event that's called when a fish is caught
 
@@ -27,8 +29,15 @@ public partial class FishingSpot : Node3D
 	{
 		CurrentStock = MaxStock; // Set the current stock to the max stock
 	}
+
+	public override void _Ready()
+	{
+		particles = FindChild("SpotParticles") as GpuParticles3D;
+	}
+
 	public void Restock() // Start a timer and hide the particles until it's done
 	{
+		GD.Print("Restocking");
 		timer.Start();
 		particles.Emitting = false;
 	}
@@ -47,6 +56,7 @@ public partial class FishingSpot : Node3D
 			Random rnd = new Random();
 			catchTime.WaitTime = rnd.Next(3, 7); // Gets a random wait time between 3 and 7 seconds.
 			catchTime.Start();
+			idleSound.Play();
 		}
 	}
 
@@ -56,7 +66,8 @@ public partial class FishingSpot : Node3D
 		player.caughtSprite.Visible = true;
 		fishTime.Start();
 		fishFound = true;
-
+		foundSound.Play();
+		particlesCaught.Emitting = true;
 	}
 	public override void _Input(InputEvent @event) // Detects input, if theres a fish available it will catch it otherwise it'll cause the fish to flee.
 	{
@@ -70,12 +81,11 @@ public partial class FishingSpot : Node3D
 		}
 	}
 
-	public void FishFled() // The fish fled :( hides the fishing spot
+	public void FishFled() // The fish fled :( 
 	{
 		fishFound = false;
 		Player player = GetTree().GetNodesInGroup("Player")[0] as Player;
 		player.caughtSprite.Visible = false;
-		Restock();
 	}
 
 

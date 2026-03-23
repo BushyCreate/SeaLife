@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://kxamafaw8ah5" path="res://Entities/Player/Player.tscn" id="2_vqqba"]
 [ext_resource type="PackedScene" uid="uid://bpl8tddf2aaxj" path="res://Assets/HUD/Default.tscn" id="3_65mjx"]
 [ext_resource type="PackedScene" uid="uid://dkuya8jyqa1ha" path="res://Assets/HUD/Database/Leaderboard.tscn" id="3_pyevf"]
+[ext_resource type="Shader" uid="uid://dwlkc2qoxggl5" path="res://Assets/Shaders/Sky/Sky.gdshader" id="4_lqoxa"]
 [ext_resource type="MeshLibrary" uid="uid://dk3yanro1hwlu" path="res://Assets/Models/Block.meshlib" id="4_t26xa"]
 [ext_resource type="PackedScene" uid="uid://dfwlxvk8baw7d" path="res://Entities/Bridge/Bridge.tscn" id="5_vqqba"]
 [ext_resource type="PackedScene" uid="uid://wsxi47iwuu0a" path="res://Entities/FishingSpot/FishingSpot.tscn" id="6_65mjx"]
@@ -18,24 +19,51 @@
 [ext_resource type="PackedScene" uid="uid://c2eeqjb0c8fjr" path="res://Entities/Upgrader/Upgrader.tscn" id="15_bahkr"]
 [ext_resource type="PackedScene" uid="uid://dfvjk568qywqm" path="res://Entities/SceneChangerSpot/SceneChangerSpot.tscn" id="16_cghif"]
 [ext_resource type="PackedScene" uid="uid://d15rv3udl1s8o" path="res://Maps/Map.tscn" id="17_pyevf"]
+[ext_resource type="AudioStream" uid="uid://cewm0kpckmvri" path="res://Assets/Audio/EmeraldCoast.mp3" id="19_134n1"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7dp7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6jqwd"]
 render_priority = 0
 shader = ExtResource("1_8a582")
-shader_parameter/color1 = Color(0, 0, 1, 1)
-shader_parameter/color2 = Color(0, 0.49411765, 1, 1)
-shader_parameter/color3 = Color(0, 0, 1, 1)
-shader_parameter/x_amount = 4096.0
-shader_parameter/y_amount = 4096.0
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(256, 256)
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_amplitude = 0.5
+shader_parameter/wave_frequency = 1.5
+shader_parameter/time_offset = 0.0
+shader_parameter/water_size = Vector2(128, 128)
+shader_parameter/water_transparency = 1.0
+shader_parameter/water_depth_factor = 0.1
+shader_parameter/foam_width = 0.5
+shader_parameter/foam_edge_softness = 0.05
+shader_parameter/foam_smoothness = 0.03
+shader_parameter/foam_distortion_speed = 0.5
+shader_parameter/foam_distortion_amount = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_oj1el"]
+material = SubResource("ShaderMaterial_6jqwd")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qf64o"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kv3nv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lqoxa"]
+albedo_color = Color(3.128499e-07, 0.21514863, 0.21514866, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6jqwd"]
+material = SubResource("StandardMaterial3D_lqoxa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_leql3"]
+shader = ExtResource("4_lqoxa")
+shader_parameter/color_top = Color(0.4392157, 0.14117648, 1, 1)
+shader_parameter/color_horizon = Color(0.37898806, 0.29413384, 0.45437574, 1)
+shader_parameter/color_bottom = Color(1, 0.74, 0.39, 1)
+shader_parameter/exponent_factor_top = 1.0
+shader_parameter/exponent_factor_bottom = 1.0
+shader_parameter/intensity_amp = 0.3950000187625
 
 [sub_resource type="Sky" id="Sky_a2b5d"]
-sky_material = SubResource("ProceduralSkyMaterial_kv3nv")
+sky_material = SubResource("ShaderMaterial_leql3")
 
 [sub_resource type="Environment" id="Environment_ufv36"]
 background_mode = 2
@@ -51,7 +79,6 @@ size = Vector3(1, 8.915161, 1)
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=1652291604]
 transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -1.3631296, 0)
-material_override = SubResource("ShaderMaterial_v7dp7")
 mesh = SubResource("BoxMesh_oj1el")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Water" unique_id=1117580956]
@@ -59,6 +86,17 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/StaticBody3D" unique_id=895356523]
+shape = SubResource("BoxShape3D_qf64o")
+
+[node name="WaterBody" type="MeshInstance3D" parent="." unique_id=374661597]
+transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 0, -3.9305277, 0)
+mesh = SubResource("BoxMesh_6jqwd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WaterBody" unique_id=635536966]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterBody/StaticBody3D" unique_id=1496628160]
 shape = SubResource("BoxShape3D_qf64o")
 
 [node name="Player" parent="." unique_id=646492556 node_paths=PackedStringArray("HUDManager", "canvas") groups=["Player"] instance=ExtResource("2_vqqba")]
@@ -165,6 +203,11 @@ scene = ExtResource("17_pyevf")
 
 [node name="CollisionShape3D" parent="SceneChangerSpot" index="0" unique_id=2052271297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.056243896, 1.146698, -1.2914429)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1096370273]
+stream = ExtResource("19_134n1")
+autoplay = true
+parameters/looping = true
 
 [connection signal="CaughtEvent" from="FishingSpots/FishingSpot" to="Bridges/BridgeA" method="Appear"]
 [connection signal="CaughtEvent" from="FishingSpots/FishingSpot2" to="Bridges/BridgeB" method="Appear"]

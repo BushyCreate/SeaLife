@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dgo0w07ieucph"
+path="res://.godot/imported/funny.dialogue-9beff7804e533d967bd40f9baf260427.tres"
+
+[deps]
+
+source_file="res://Assets/Dialogue/funny.dialogue"
+dest_files=["res://.godot/imported/funny.dialogue-9beff7804e533d967bd40f9baf260427.tres"]
+
+[params]
+
+defaults=true

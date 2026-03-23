@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dcr33d44cbqnc"]
 
+[ext_resource type="Shader" uid="uid://dwlkc2qoxggl5" path="res://Assets/Shaders/Sky/Sky.gdshader" id="1_c8drq"]
 [ext_resource type="MeshLibrary" uid="uid://dk3yanro1hwlu" path="res://Assets/Models/Block.meshlib" id="1_vdp1o"]
 [ext_resource type="Shader" uid="uid://bkoqqpqsn16c8" path="res://Assets/Shaders/Water/Water.gdshader" id="2_d22av"]
 [ext_resource type="PackedScene" uid="uid://dyys5umeh8pja" path="res://Entities/Bobber/fishing_bobber.glb" id="3_ot31t"]
@@ -8,11 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://d15rv3udl1s8o" path="res://Maps/Map.tscn" id="5_lwjgo"]
 [ext_resource type="Texture2D" uid="uid://c3b7r4spbgnef" path="res://Assets/Logo/Bijlage 2 - Logo.png" id="6_lwjgo"]
 [ext_resource type="AudioStream" uid="uid://ywehaym6twom" path="res://Assets/Audio/ToyKingdom.mp3" id="8_waved"]
+[ext_resource type="PackedScene" uid="uid://crma455q6rsi0" path="res://Assets/Models/KenneyModels/FBX format/boat-row-small.fbx" id="10_beee5"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lwjgo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkd47"]
+shader = ExtResource("1_c8drq")
+shader_parameter/color_top = Color(0.4392157, 0.14117648, 1, 1)
+shader_parameter/color_horizon = Color(0.37898806, 0.29413384, 0.45437574, 1)
+shader_parameter/color_bottom = Color(1, 0.74, 0.39, 1)
+shader_parameter/exponent_factor_top = 1.0
+shader_parameter/exponent_factor_bottom = 1.0
+shader_parameter/intensity_amp = 1.0
 
 [sub_resource type="Sky" id="Sky_7yn8b"]
-sky_material = SubResource("ProceduralSkyMaterial_lwjgo")
+sky_material = SubResource("ShaderMaterial_mkd47")
 
 [sub_resource type="Environment" id="Environment_5j0vy"]
 background_mode = 2
@@ -35,11 +44,23 @@ material = SubResource("StandardMaterial3D_e5kic")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_beee5"]
 render_priority = 0
 shader = ExtResource("2_d22av")
-shader_parameter/color1 = Color(0, 0, 1, 1)
-shader_parameter/color2 = Color(0, 0.49411765, 1, 1)
-shader_parameter/color3 = Color(0, 0, 1, 1)
-shader_parameter/x_amount = 4096.0
-shader_parameter/y_amount = 4096.0
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(256, 256)
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_amplitude = 0.5
+shader_parameter/wave_frequency = 1.5
+shader_parameter/time_offset = 0.0
+shader_parameter/water_size = Vector2(128, 128)
+shader_parameter/water_transparency = 1.0
+shader_parameter/water_depth_factor = 0.1
+shader_parameter/foam_width = 0.5
+shader_parameter/foam_edge_softness = 0.05
+shader_parameter/foam_smoothness = 0.03
+shader_parameter/foam_distortion_speed = 0.5
+shader_parameter/foam_distortion_amount = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_mkd47"]
 
@@ -191,3 +212,6 @@ expand_mode = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=5802454]
 stream = ExtResource("8_waved")
 autoplay = true
+
+[node name="boat-row-small" parent="." unique_id=2106551907 instance=ExtResource("10_beee5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.360444, -1.1017406, 0.69009686)

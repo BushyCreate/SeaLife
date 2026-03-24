@@ -15,7 +15,7 @@
 	Published a bugtesting build.
 17/03/26:
 	Created a tutorial world. This is where you learn about how to play the game.
-	Created a second build since the first was broken.
+	Created a second build since the first was broken according to a tester.
 	Added talking signs
 18/03/26:
 	Put the player stats in a proper playerstats node instead of in the hudmanager.
@@ -24,7 +24,8 @@
 	Finished the tutorial.
 	Added comments around the code so it can be read fine.
 23/03/26:
-	Fixed the bug where all the fishing spots disappeared after catching a fish.
+	Fixed the bug that a tester found where all the fishing spots disappeared after catching a fish.
+	Fixed another bug that a tester found where the bridges could go up infinitely instead of only once.
 	Added Sounds and particles!!!
 	Updated multiple shaders.
 	Released build v4 to the testers.
